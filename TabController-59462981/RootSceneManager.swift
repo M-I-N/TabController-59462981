@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct RootSceneManager {
+enum RootSceneManager {
 
     static func windowByLoadingRootScene(in windowScene: UIWindowScene) -> UIWindow {
         let window = UIWindow(windowScene: windowScene)
