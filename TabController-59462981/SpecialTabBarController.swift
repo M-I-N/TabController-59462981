@@ -10,8 +10,6 @@ import UIKit
 
 class SpecialTabBarController: UITabBarController, UITabBarControllerDelegate {
 
-    var window: UIWindow?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
@@ -19,9 +17,9 @@ class SpecialTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let _ = viewController as? LogoutViewController {
-            if let windowScene = view.window?.windowScene {
-                window = RootSceneManager.windowByLoadingRootScene(in: windowScene)
-            }
+            guard let windowScene = view.window?.windowScene,
+                let sceneDelegate = windowScene.delegate as? SceneDelegate else { return }
+            sceneDelegate.window = RootSceneManager.windowByLoadingRootScene(in: windowScene)
         }
     }
 
